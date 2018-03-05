@@ -1,2 +1,2 @@
 # MiniProjekt
-Mein SYP-Mini-Projekt für eine Leistungsfeststellung
+Mein Mini-Projekt für eine Leistungsfeststellung
