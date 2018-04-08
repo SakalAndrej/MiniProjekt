@@ -1,4 +1,4 @@
-package at.htl.web;
+package web;
 
 import at.htl.exceptions.NoConnectionException;
 import at.htl.xiboClient.StatusApi;
@@ -12,31 +12,10 @@ import java.time.LocalDateTime;
 @Named
 public class IndexController {
 
-    @Inject
-    private
-    StatusApi statusApi;
-
-    private static boolean on;
-
-    private static int cnt = 0;
-
-    private static LocalDateTime lastOnline;
+    //@Inject
+    //private object statusApi;
 
     public boolean isServerOnline() {
-        if (cnt == 0 || (lastOnline.plusSeconds(30).isBefore(LocalDateTime.now()))) {
-            try {
-                cnt++;
-                lastOnline = LocalDateTime.now();
-                on = statusApi.getIsOnline();
-                return on;
-            } catch (NoConnectionException e) {
-                cnt++;
-                lastOnline = LocalDateTime.now();
-                on = false;
-                return on;
-            }
-        } else {
-            return on;
-        }
+        return false;
     }
 }
