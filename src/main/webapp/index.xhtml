@@ -7,46 +7,65 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <title>HomeDS - Dashboard</title>
+    <title>Deliyer - Deliyer</title>
 </h:head>
 
 <h:body>
-    <b:container id="all">
-        <h:panelGrid>
-            <h3>Customer hinzufügen</h3>
-            <b:container fluid="true">
-                <h:form>
-                    <b:row>
-                        <b:column medium-screen="2">
-                            <h:outputText style="line-height: 2.5; font-weight: bold"
-                                          value="FirstName:"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText required="true" id="firstName"
-                                         placeholder="FirstName"
-                                         value="#{indexController.customerToAdd.firstName}"/>
-                        </b:column>
-                        <b:column medium-screen="2">
-                            <h:outputText style="line-height: 2.5; font-weight: bold"
-                                          value="LastName"/>
-                        </b:column>
-                        <b:column medium-screen="4">
-                            <b:inputText required="true" id="lastName"
-                                         placeholder="LastName"
-                                         value="#{indexController.customerToAdd.lastName}"/>
-                        </b:column>
-                        <b:column>
-                            <b:commandButton style="width: 100%"
-                                             update="all"
-                                             look="primary"
-                                             action="#{indexController.addCustomer}">
-                                <b:iconAwesome size="2x" name="fa-plus-square-o"/>
-                            </b:commandButton>
-                        </b:column>
-                    </b:row>
-                </h:form>
-            </b:container>
-        </h:panelGrid>
+    <b:container id="all" fluid="true" style="width:100%">
+        <h2>Fast Delivery</h2>
+        <b:panel title="Customer adden" collapsible="true" look="primary" style="width: 100%">
+            <h:form>
+                <b:row>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="FirstName:"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="firstName"
+                                     placeholder="FirstName"
+                                     value="#{indexController.customerToAdd.firstName}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="LastName"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="lastName"
+                                     placeholder="LastName"
+                                     value="#{indexController.customerToAdd.lastName}"/>
+                    </b:column>
+
+
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Street"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="street"
+                                     placeholder="Street"
+                                     value="#{indexController.addressToAdd.street}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="City"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="city"
+                                     placeholder="City"
+                                     value="#{indexController.addressToAdd.city}"/>
+                    </b:column>
+
+                    <b:column>
+                        <b:commandButton style="width: 100%"
+                                         update="all"
+                                         look="primary"
+                                         action="#{indexController.addCustomer}">
+                            <b:iconAwesome size="2x" name="fa-plus-square-o"/>
+                        </b:commandButton>
+                    </b:column>
+                </b:row>
+            </h:form>
+        </b:panel>
     </b:container>
 </h:body>
 </html>
