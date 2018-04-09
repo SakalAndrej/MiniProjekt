@@ -10,10 +10,10 @@ public class DeliveryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Delivery delivery;
 
     private int amount;

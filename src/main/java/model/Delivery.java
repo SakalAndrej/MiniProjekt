@@ -11,13 +11,13 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Address destination;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<DeliveryItem> deliveryItems;
 
     public double weight;

@@ -17,7 +17,7 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Address address;
 
     public Customer(String firstName, String lastName, Address address) {

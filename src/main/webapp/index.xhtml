@@ -186,7 +186,7 @@
                     <b:dataTableColumn value="#{delivery.delivery.destination.city}"/>
                     <b:dataTableColumn value="#{delivery.delivery.destination.country}"/>
                     <b:dataTableColumn>
-                        <p:commandButton value="ADD" update="all"></p:commandButton>
+                        <p:commandButton value="ADD" action="#{indexController.addDeliveryItem(delivery.item)}" update="all"></p:commandButton>
                     </b:dataTableColumn>
                 </b:dataTable>
             </h:form>
