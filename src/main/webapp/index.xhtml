@@ -12,6 +12,14 @@
 
 <h:body>
     <b:container id="all" fluid="true" style="width:100%">
+
+        <b:growl id="growl"
+                 globalOnly="true"
+                 showDetail="true"
+                 severity="info,warn"
+                 allowDismiss="true"
+        />
+
         <h2>Fast Delivery - Dashboard</h2>
 
         <!-- Items hinzufügen -->
@@ -48,7 +56,7 @@
                     </b:column>
                     <b:column>
                         <b:commandButton style="width: 100%"
-                                         update="all"
+                                         update="all growl"
                                          look="primary"
                                          id="addItem"
                                          action="#{indexController.addItem}">
@@ -134,7 +142,7 @@
 
                     <b:column>
                         <b:commandButton style="width: 100%"
-                                         update="all"
+                                         update="all growl"
                                          look="primary"
                                          action="#{indexController.addCustomer}">
                             <b:iconAwesome size="2x" name="fa-plus-square-o"/>
@@ -183,6 +191,7 @@
                              var="delivery" searching="false" paginated="false">
                     <b:dataTableColumn value="#{delivery.item.name}"/>
                     <b:dataTableColumn value="#{delivery.amount}"/>
+                    <b:dataTableColumn value="#{delivery.item.weight}"/>
                 </b:dataTable>
             </h:form>
                 <h:form>
@@ -225,7 +234,7 @@
 
                     <b:column>
                         <b:commandButton style="width: 100%"
-                                         update="all"
+                                         update="all growl"
                                          look="primary"
                                          action="#{indexController.saveActDelivery}">
                             <b:iconAwesome size="2x" name="fa-plus-square-o"/>

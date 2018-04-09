@@ -6,6 +6,8 @@ import model.*;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.LinkedList;
@@ -46,6 +48,8 @@ public class IndexController {
 
     private Address destinationToAdd;
 
+    private static FacesContext context = FacesContext.getCurrentInstance();
+
     @PostConstruct
     public void init() {
         destinationToAdd = new Address();
@@ -62,6 +66,7 @@ public class IndexController {
         if (itemToAdd != null) {
             itemFacade.save(itemToAdd);
             items = itemFacade.load();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Succesfully added Item: " + itemToAdd.getName()));
             itemToAdd = new Item();
         }
     }
@@ -71,6 +76,7 @@ public class IndexController {
             this.addressFacade.save(addressToAdd);
             this.customerFacade.save(customerToAdd);
             this.customers = customerFacade.load();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Succesfully added Customer"));
             addressToAdd = new Address();
             customerToAdd = new Customer();
         }
@@ -87,6 +93,7 @@ public class IndexController {
             deliveryToAdd = new Delivery();
             destinationToAdd = new Address();
             deliveryItems = new LinkedList<>();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Succesfully added Delivery"));
         }
         else {
             // Growl
@@ -111,6 +118,7 @@ public class IndexController {
             for (int i = 0; i < deliveryItems.size(); i++) {
                 if (deliveryItems.get(i).getItem().getId() == item.getId()) {
                     deliveryItems.get(i).setAmount(deliveryItems.get(i).getAmount() + 1);
+                    deliveryItems.get(i).getItem().setWeight(deliveryItems.get(i).getItem().getWeight() * 3);
                     found = true;
                 }
             }
