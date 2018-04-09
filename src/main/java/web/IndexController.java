@@ -2,10 +2,9 @@ package web;
 
 import facades.AddressFacade;
 import facades.CustomerFacade;
+import facades.DeliveryFacade;
 import facades.ItemFacade;
-import model.Address;
-import model.Customer;
-import model.Item;
+import model.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -18,6 +17,9 @@ import java.util.List;
 public class IndexController {
 
     @Inject
+    private DeliveryFacade deliveryFacade;
+
+    @Inject
     private CustomerFacade customerFacade;
 
     @Inject
@@ -28,6 +30,8 @@ public class IndexController {
 
     private List<Item> items;
 
+    private List<DeliveryItem> deliveryItems;
+
     private List<Customer> customers;
 
     private Item itemToAdd;
@@ -36,6 +40,8 @@ public class IndexController {
 
     private Address addressToAdd;
 
+    private Delivery deliveryToAdd;
+
     @PostConstruct
     public void init() {
         itemToAdd = new Item();
@@ -43,10 +49,11 @@ public class IndexController {
         addressToAdd = new Address();
         items = itemFacade.load();
         customers = customerFacade.load();
+        deliveryToAdd = new Delivery();
     }
 
     public void addItem() {
-        if (itemToAdd!=null) {
+        if (itemToAdd != null) {
             itemFacade.save(itemToAdd);
             items = itemFacade.load();
         }
@@ -60,7 +67,69 @@ public class IndexController {
         }
     }
 
+    public void AddItem(Item item) {
+        if (item != null) {
+            itemFacade.save(item);
+        }
+    }
+
+    public void selectCustomer(Customer customer) {
+        if (customer != null) {
+            deliveryToAdd.setCustomer(customer);
+        }
+    }
+
+    public void deselectCustomer(Customer customer) {
+        if (customer != null) {
+            deliveryToAdd.setCustomer(null);
+        }
+    }
+
+    public void addDeliveryItem(Item item) {
+        if (item != null) {
+            boolean found = false;
+            for (int i = 0; i < deliveryItems.size(); i++) {
+                if (deliveryItems.get(i).getId() == item.getId()) {
+                    deliveryItems.get(i).setAmount(deliveryItems.get(i).getAmount() + 1);
+                    found = true;
+                }
+            }
+            if (found == false) {
+                DeliveryItem ditem = new DeliveryItem();
+                ditem.setAmount(1);
+                ditem.setItem(item);
+                ditem.setDelivery(deliveryToAdd);
+                deliveryItems.add(ditem);
+            }
+        }
+    }
+
     //region Getter & Setter
+
+
+    public List<DeliveryItem> getDeliveryItems() {
+        return deliveryItems;
+    }
+
+    public void setDeliveryItems(List<DeliveryItem> deliveryItems) {
+        this.deliveryItems = deliveryItems;
+    }
+
+    public Delivery getDeliveryToAdd() {
+        return deliveryToAdd;
+    }
+
+    public void setDeliveryToAdd(Delivery deliveryToAdd) {
+        this.deliveryToAdd = deliveryToAdd;
+    }
+
+    public DeliveryFacade getDeliveryFacade() {
+        return deliveryFacade;
+    }
+
+    public void setDeliveryFacade(DeliveryFacade deliveryFacade) {
+        this.deliveryFacade = deliveryFacade;
+    }
 
     public Customer getCustomerToAdd() {
         return customerToAdd;

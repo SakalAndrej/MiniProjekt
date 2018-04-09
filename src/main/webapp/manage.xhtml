@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Deliver - Deliver</title>
+</h:head>
+
+<h:body>
+    <b:container id="all" fluid="true" style="width:100%">
+        <h2>Fast Delivery - Deliveries</h2>
+
+        <!-- Items hinzufügen -->
+        <b:panel title="Manage Deliveries" collapsible="true" look="primary" style="width: 100%">
+            <h:form>
+                <b:dataTable id="itemsdata" value="#{indexController.}"
+                             var="item">
+                    <b:dataTableColumn value="#{item.name}"/>
+                    <b:dataTableColumn value="#{item.description}"/>
+                    <b:dataTableColumn value="#{item.weight}"/>
+                </b:dataTable>
+            </h:form>
+        </b:panel>
+    </b:container>
+</h:body>
+</html>

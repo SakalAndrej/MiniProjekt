@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Deliver - Deliver</title>
+    <title>Deliver</title>
 </h:head>
 
 <h:body>
@@ -155,88 +155,42 @@
             </b:panel>
         </b:panel>
 
-        <!--<b:panel title="Manage Delivery" collapsible="true" look="primary" style="width: 100%">
+        <b:panel title="Manage Delivery" collapsible="true" look="primary" style="width: 100%">
             <h:form>
-                <b:row>
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="FirstName:"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="firstName"
-                                     placeholder="FirstName"
-                                     value="#{indexController.customerToAdd.firstName}"/>
-                    </b:column>
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="LastName"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="lastName"
-                                     placeholder="LastName"
-                                     value="#{indexController.customerToAdd.lastName}"/>
-                    </b:column>
+                <h2>Select Customer:</h2>
+                <b:dataTable id="customerdata" value="#{indexController.customers}"
+                             var="customer" select="true" onselect="ajax:indexController.selectCustomer(customer)">
+                    <b:dataTableColumn value="#{customer.firstName}"/>
+                    <b:dataTableColumn value="#{customer.lastName}"/>
+                    <b:dataTableColumn value="#{customer.lastName}"/>
+                </b:dataTable>
 
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="Street"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="street"
-                                     placeholder="Street"
-                                     value="#{indexController.addressToAdd.street}"/>
-                    </b:column>
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="City"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="city"
-                                     placeholder="City"
-                                     value="#{indexController.addressToAdd.city}"/>
-                    </b:column>
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="Address Additional"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="additionalAddress"
-                                     placeholder="Additional Adress"
-                                     value="#{indexController.addressToAdd.additionalAdress}"/>
-                    </b:column>
-                    <b:column medium-screen="4">
-                        <h:outputText style="line-height: 2.5; font-weight: bold"
-                                      value="Country"/>
-                    </b:column>
-                    <b:column medium-screen="8">
-                        <b:inputText required="true" id="country"
-                                     placeholder="Country"
-                                     value="#{indexController.addressToAdd.country}"/>
-                    </b:column>
+                <h2>Add Items to Delivery:</h2>
+                <b:dataTable id="itemsdata" value="#{indexController.items}"
+                             var="item">
+                    <b:dataTableColumn value="#{item.name}"/>
+                    <b:dataTableColumn value="#{item.description}"/>
+                    <b:dataTableColumn value="#{item.weight}"/>
+                    <b:dataTableColumn>
+                        <p:commandButton value="ADD" update="all"></p:commandButton>
+                    </b:dataTableColumn>
+                </b:dataTable>
 
-                    <b:column>
-                        <b:commandButton style="width: 100%"
-                                         update="all"
-                                         look="primary"
-                                         action="#{indexController.addCustomer}">
-                            <b:iconAwesome size="2x" name="fa-plus-square-o"/>
-                        </b:commandButton>
-                    </b:column>
-                </b:row>
-            </h:form>-->
-
-            <!-- Customer Datatable -->
-            <b:panel title="Customers" collapsible="true">
-                <h:form>
-                    <b:dataTable id="customerdata" value="#{indexController.customers}"
-                                 var="customer">
-                        <b:dataTableColumn value="#{customer.firstName}"/>
-                        <b:dataTableColumn value="#{customer.lastName}"/>
-                    </b:dataTable>
-                </h:form>
-            </b:panel>
+                <h2>Act Delivery</h2>
+                <b:dataTable id="deliveries" value="#{indexController.deliveryItems}"
+                             var="delivery">
+                    <b:dataTableColumn value="#{delivery.item.name}"/>
+                    <b:dataTableColumn value="#{delivery.amount}"/>
+                    <b:dataTableColumn value="#{delivery.delivery.customer}"/>
+                    <b:dataTableColumn value="#{delivery.delivery.destination.street}"/>
+                    <b:dataTableColumn value="#{delivery.delivery.destination.city}"/>
+                    <b:dataTableColumn value="#{delivery.delivery.destination.country}"/>
+                    <b:dataTableColumn>
+                        <p:commandButton value="ADD" update="all"></p:commandButton>
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </h:form>
         </b:panel>
-
     </b:container>
 </h:body>
 </html>
