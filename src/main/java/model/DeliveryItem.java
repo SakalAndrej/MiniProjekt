@@ -13,14 +13,10 @@ public class DeliveryItem {
     @ManyToOne(fetch = FetchType.EAGER)
     private Item item;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Delivery delivery;
-
     private int amount;
 
-    public DeliveryItem(Item item, Delivery delivery, int amount) {
+    public DeliveryItem(Item item, int amount) {
         this.item = item;
-        this.delivery = delivery;
         this.amount = amount;
     }
 
@@ -42,14 +38,6 @@ public class DeliveryItem {
 
     public void setItem(Item item) {
         this.item = item;
-    }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
     }
 
     public int getAmount() {

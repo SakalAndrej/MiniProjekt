@@ -62,6 +62,7 @@ public class IndexController {
         if (itemToAdd != null) {
             itemFacade.save(itemToAdd);
             items = itemFacade.load();
+            itemToAdd = new Item();
         }
     }
 
@@ -76,8 +77,9 @@ public class IndexController {
     }
 
     public void saveActDelivery() {
-        if (deliveryToAdd != null && destinationToAdd != null && deliveryItems!= null && deliveryItems.size()>0) {
+        if (deliveryToAdd != null && destinationToAdd != null && deliveryItems!= null && deliveryItems.size()>0 && deliveryToAdd.getCustomer()!= null) {
             addressFacade.save(destinationToAdd);
+            deliveryToAdd.setDestination(destinationToAdd);
             for (int i = 0; i < deliveryItems.size(); i++) {
                 deliveryItemFacade.save(deliveryItems.get(i));
             }
@@ -86,12 +88,8 @@ public class IndexController {
             destinationToAdd = new Address();
             deliveryItems = new LinkedList<>();
         }
-    }
-
-    public void AddItem(Item item) {
-        if (item != null) {
-            itemFacade.save(item);
-            itemToAdd = new Item();
+        else {
+            // Growl
         }
     }
 
@@ -120,13 +118,21 @@ public class IndexController {
                 DeliveryItem ditem = new DeliveryItem();
                 ditem.setAmount(1);
                 ditem.setItem(item);
-                ditem.setDelivery(deliveryToAdd);
                 deliveryItems.add(ditem);
             }
         }
     }
 
     //region Getter & Setter
+
+
+    public Address getDestinationToAdd() {
+        return destinationToAdd;
+    }
+
+    public void setDestinationToAdd(Address destinationToAdd) {
+        this.destinationToAdd = destinationToAdd;
+    }
 
     public List<DeliveryItem> getDeliveryItems() {
         return deliveryItems;
