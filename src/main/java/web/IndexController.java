@@ -2,10 +2,10 @@ package web;
 
 import facades.*;
 import model.*;
+import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -107,10 +107,11 @@ public class IndexController {
         if (customer != null) {
             deliveryToAdd.setCustomer(customer);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Selected Customer"));
-        }
+            }
         else {
-
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error while selecting Customer"));
         }
+        RequestContext.getCurrentInstance().update("growl");
     }
 
     public void deselectCustomer(Customer customer) {
@@ -120,6 +121,7 @@ public class IndexController {
     }
 
     public void addDeliveryItem(Item item) {
+        FacesContext context = FacesContext.getCurrentInstance();
         if (item != null) {
             boolean found = false;
             for (int i = 0; i < deliveryItems.size(); i++) {
@@ -135,6 +137,10 @@ public class IndexController {
                 ditem.setItem(item);
                 deliveryItems.add(ditem);
             }
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Added item to delivery"));
+        }
+        else {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error editing item"));
         }
     }
 

@@ -31,7 +31,7 @@
                                       value="Name:"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="name"
+                        <b:inputText required="true" requiredMessage="Please fill in the Name" id="name"
                                      placeholder="Name"
                                      value="#{indexController.itemToAdd.name}"/>
                     </b:column>
@@ -40,7 +40,7 @@
                                       value="Description"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="description"
+                        <b:inputText id="description"
                                      placeholder="Description"
                                      value="#{indexController.itemToAdd.description}"/>
                     </b:column>
@@ -50,7 +50,7 @@
                                       value="Weight"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="weight"
+                        <b:inputText required="true" requiredMessage="Please fill in the weight" id="weight"
                                      placeholder="10.0"
                                      value="#{indexController.itemToAdd.weight}" tooltip="Please fill in KG"/>
                     </b:column>
@@ -126,7 +126,7 @@
                                       value="Address Additional"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="additionalAddress"
+                        <b:inputText id="additionalAddress"
                                      placeholder="Additional Adress"
                                      value="#{indexController.addressToAdd.additionalAdress}"/>
                     </b:column>
@@ -218,7 +218,7 @@
                                       value="Address Additional"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="additionalAddress"
+                        <b:inputText id="additionalAddress"
                                      placeholder="Additional Adress"
                                      value="#{indexController.destinationToAdd.additionalAdress}"/>
                     </b:column>
