@@ -7,12 +7,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <title>Deliyer - Deliyer</title>
+    <title>Deliver - Deliver</title>
 </h:head>
 
 <h:body>
     <b:container id="all" fluid="true" style="width:100%">
-        <h2>Fast Delivery</h2>
+        <h2>Fast Delivery - Dashboard</h2>
+
+
+
+        <!-- Customer adden -->
         <b:panel title="Customer adden" collapsible="true" look="primary" style="width: 100%">
             <h:form>
                 <b:row>
@@ -53,6 +57,24 @@
                         <b:inputText required="true" id="city"
                                      placeholder="City"
                                      value="#{indexController.addressToAdd.city}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Address Additional"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="additionalAddress"
+                                     placeholder="Additional Adress"
+                                     value="#{indexController.addressToAdd.additionalAdress}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Country"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="country"
+                                     placeholder="Country"
+                                     value="#{indexController.addressToAdd.country}"/>
                     </b:column>
 
                     <b:column>

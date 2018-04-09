@@ -16,7 +16,6 @@ public class Customer {
     @ManyToOne
     private Address address;
 
-
     public Customer(String firstName, String lastName, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -58,7 +57,6 @@ public class Customer {
     public void setAddress(Address address) {
         this.address = address;
     }
-
 
     //endregion
 

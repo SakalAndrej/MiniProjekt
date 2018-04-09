@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "DELIVERY")
@@ -11,10 +12,13 @@ public class Delivery {
     private Long id;
 
     @ManyToOne
-    public Customer customer;
+    private Customer customer;
 
     @ManyToOne
-    public Address destination;
+    private Address destination;
+
+    @OneToMany
+    private List<DeliveryItem> deliveryItems;
 
     public double weight;
 
@@ -26,8 +30,7 @@ public class Delivery {
 
     public Delivery() { }
 
-
-    //region GEtter & Setter
+    //region Getter & Setter
 
     public Long getDV_ID() {
         return id;
