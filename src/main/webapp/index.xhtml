@@ -31,6 +31,7 @@
                                       value="Name:"/>
                     </b:column>
                     <b:column medium-screen="8">
+                        <b:message for="name" style="color:red"/>
                         <b:inputText required="true" requiredMessage="Please fill in the Name" id="name"
                                      placeholder="Name"
                                      value="#{indexController.itemToAdd.name}"/>
@@ -44,12 +45,12 @@
                                      placeholder="Description"
                                      value="#{indexController.itemToAdd.description}"/>
                     </b:column>
-
                     <b:column medium-screen="4">
                         <h:outputText style="line-height: 2.5; font-weight: bold"
                                       value="Weight"/>
                     </b:column>
                     <b:column medium-screen="8">
+                        <b:message for="weight" style="color:red"/>
                         <b:inputText required="true" requiredMessage="Please fill in the weight" id="weight"
                                      placeholder="10.0"
                                      value="#{indexController.itemToAdd.weight}" tooltip="Please fill in KG"/>
@@ -89,7 +90,8 @@
                                       value="FirstName:"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="firstName"
+                        <b:message for="firstName" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the FirstName" id="firstName"
                                      placeholder="FirstName"
                                      value="#{indexController.customerToAdd.firstName}"/>
                     </b:column>
@@ -98,7 +100,8 @@
                                       value="LastName"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="lastName"
+                        <b:message for="lastName" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the LastName" id="lastName"
                                      placeholder="LastName"
                                      value="#{indexController.customerToAdd.lastName}"/>
                     </b:column>
@@ -108,7 +111,8 @@
                                       value="Street"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="street"
+                        <b:message for="street" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the Street" id="street"
                                      placeholder="Street"
                                      value="#{indexController.addressToAdd.street}"/>
                     </b:column>
@@ -117,7 +121,8 @@
                                       value="City"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="city"
+                        <b:message for="city" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the city" id="city"
                                      placeholder="City"
                                      value="#{indexController.addressToAdd.city}"/>
                     </b:column>
@@ -135,7 +140,8 @@
                                       value="Country"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="country"
+                        <b:message for="country" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the country" id="country"
                                      placeholder="Country"
                                      value="#{indexController.addressToAdd.country}"/>
                     </b:column>
