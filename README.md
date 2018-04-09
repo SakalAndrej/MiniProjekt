@@ -44,4 +44,4 @@ Bei der Auftragserstellung kann ein Kunde ausgewählt, dann die Ware die beförd
 
 ## Auftragsansicht
 
-Es wird eine neue Seite geben die eine Liste aller Aufträge anzeigt und bei Auswählen einen Mark in einer Google Maps anzeigt! (NOCH NICHT IMPLEMENTIERT)
+Es gibt eine weitere Seite (localhost:8080/mini/manage.xhtml) die eine Liste aller Aufträge anzeigt und bei Auswählen einen Mark in einer Google Maps anzeigt! (NOCH NICHT IMPLEMENTIERT)

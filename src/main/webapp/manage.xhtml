@@ -17,11 +17,13 @@
         <!-- Items hinzufügen -->
         <b:panel title="Manage Deliveries" collapsible="true" look="primary" style="width: 100%">
             <h:form>
-                <b:dataTable id="itemsdata" value="#{indexController.}"
-                             var="item">
-                    <b:dataTableColumn value="#{item.name}"/>
-                    <b:dataTableColumn value="#{item.description}"/>
-                    <b:dataTableColumn value="#{item.weight}"/>
+                <b:dataTable id="itemsdata" value="#{manageController.deliveryList}"
+                             var="delivery">
+                    <b:dataTableColumn value="#{delivery.customer.firstName}"/>
+                    <b:dataTableColumn value="#{delivery.customer.lastName}"/>
+                    <b:dataTableColumn value="#{delivery.destination.street}"/>
+                    <b:dataTableColumn value="#{delivery.destination.city}"/>
+                    <b:dataTableColumn value="#{delivery.destination.additionalAdress}"/>
                 </b:dataTable>
             </h:form>
         </b:panel>
