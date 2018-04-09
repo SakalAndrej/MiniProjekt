@@ -142,7 +142,7 @@
                     </b:column>
                 </b:row>
             </h:form>
-
+            <br></br>
             <!-- Customer Datatable -->
             <b:panel title="Customers" collapsible="true">
                 <h:form>
@@ -155,40 +155,82 @@
             </b:panel>
         </b:panel>
 
-        <b:panel title="Manage Delivery" collapsible="true" look="primary" style="width: 100%">
+        <b:panel title="Create Delivery" collapsible="true" look="primary" style="width: 100%">
             <h:form>
-                <h2>Select Customer:</h2>
-                <b:dataTable id="customerdata" value="#{indexController.customers}"
+                <h3>Select Customer</h3>
+                <b:dataTable id="customerdata" value="#{indexController.customers}" searching="false" paginated="false"
                              var="customer" select="true" onselect="ajax:indexController.selectCustomer(customer)">
                     <b:dataTableColumn value="#{customer.firstName}"/>
                     <b:dataTableColumn value="#{customer.lastName}"/>
                     <b:dataTableColumn value="#{customer.lastName}"/>
                 </b:dataTable>
 
-                <h2>Add Items to Delivery:</h2>
+                <h3>Add Items to Delivery</h3>
                 <b:dataTable id="itemsdata" value="#{indexController.items}"
                              var="item">
+                    <b:dataTableColumn value="#{item.id}"/>
                     <b:dataTableColumn value="#{item.name}"/>
                     <b:dataTableColumn value="#{item.description}"/>
                     <b:dataTableColumn value="#{item.weight}"/>
                     <b:dataTableColumn>
-                        <p:commandButton value="ADD" update="all"></p:commandButton>
+                        <p:commandButton value="ADD" action="#{indexController.addDeliveryItem(item)}" update="all"></p:commandButton>
                     </b:dataTableColumn>
                 </b:dataTable>
 
-                <h2>Act Delivery</h2>
+                <h3>Actual Delivery</h3>
                 <b:dataTable id="deliveries" value="#{indexController.deliveryItems}"
-                             var="delivery">
+                             var="delivery" searching="false" paginated="false">
                     <b:dataTableColumn value="#{delivery.item.name}"/>
                     <b:dataTableColumn value="#{delivery.amount}"/>
                     <b:dataTableColumn value="#{delivery.delivery.customer}"/>
-                    <b:dataTableColumn value="#{delivery.delivery.destination.street}"/>
-                    <b:dataTableColumn value="#{delivery.delivery.destination.city}"/>
-                    <b:dataTableColumn value="#{delivery.delivery.destination.country}"/>
-                    <b:dataTableColumn>
-                        <p:commandButton value="ADD" action="#{indexController.addDeliveryItem(delivery.item)}" update="all"></p:commandButton>
-                    </b:dataTableColumn>
                 </b:dataTable>
+
+                <b:column medium-screen="4">
+                    <h:outputText style="line-height: 2.5; font-weight: bold"
+                                  value="Street"/>
+                </b:column>
+                <b:column medium-screen="8">
+                    <b:inputText required="true" id="street"
+                                 placeholder="Street"
+                                 value="#{indexController.destinationToAdd.street}"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <h:outputText style="line-height: 2.5; font-weight: bold"
+                                  value="City"/>
+                </b:column>
+                <b:column medium-screen="8">
+                    <b:inputText required="true" id="city"
+                                 placeholder="City"
+                                 value="#{indexController.destinationToAdd.city}"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <h:outputText style="line-height: 2.5; font-weight: bold"
+                                  value="Address Additional"/>
+                </b:column>
+                <b:column medium-screen="8">
+                    <b:inputText required="true" id="additionalAddress"
+                                 placeholder="Additional Adress"
+                                 value="#{indexController.destinationToAdd.additionalAdress}"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <h:outputText style="line-height: 2.5; font-weight: bold"
+                                  value="Country"/>
+                </b:column>
+                <b:column medium-screen="8">
+                    <b:inputText required="true" id="country"
+                                 placeholder="Country"
+                                 value="#{indexController.destinationToAdd.country}"/>
+                </b:column>
+
+                <b:column>
+                    <b:commandButton style="width: 100%"
+                                     update="all"
+                                     look="primary"
+                                     action="#{indexController.saveActDelivery}">
+                        <b:iconAwesome size="2x" name="fa-plus-square-o"/>
+                    </b:commandButton>
+                </b:column>
+
             </h:form>
         </b:panel>
     </b:container>

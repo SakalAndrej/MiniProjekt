@@ -1,18 +1,17 @@
 package web;
 
-import facades.AddressFacade;
-import facades.CustomerFacade;
-import facades.DeliveryFacade;
-import facades.ItemFacade;
+import facades.*;
 import model.*;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.LinkedList;
 import java.util.List;
 
-@Model
+@ApplicationScoped
 @Named
 public class IndexController {
 
@@ -28,6 +27,9 @@ public class IndexController {
     @Inject
     private ItemFacade itemFacade;
 
+    @Inject
+    private DeliveryItemFacade deliveryItemFacade;
+
     private List<Item> items;
 
     private List<DeliveryItem> deliveryItems;
@@ -42,14 +44,18 @@ public class IndexController {
 
     private Delivery deliveryToAdd;
 
+    private Address destinationToAdd;
+
     @PostConstruct
     public void init() {
+        destinationToAdd = new Address();
         itemToAdd = new Item();
         customerToAdd = new Customer();
         addressToAdd = new Address();
         items = itemFacade.load();
         customers = customerFacade.load();
         deliveryToAdd = new Delivery();
+        deliveryItems = new LinkedList<DeliveryItem>();
     }
 
     public void addItem() {
@@ -64,12 +70,28 @@ public class IndexController {
             this.addressFacade.save(addressToAdd);
             this.customerFacade.save(customerToAdd);
             this.customers = customerFacade.load();
+            addressToAdd = new Address();
+            customerToAdd = new Customer();
+        }
+    }
+
+    public void saveActDelivery() {
+        if (deliveryToAdd != null && destinationToAdd != null && deliveryItems!= null && deliveryItems.size()>0) {
+            addressFacade.save(destinationToAdd);
+            for (int i = 0; i < deliveryItems.size(); i++) {
+                deliveryItemFacade.save(deliveryItems.get(i));
+            }
+            deliveryFacade.save(deliveryToAdd);
+            deliveryToAdd = new Delivery();
+            destinationToAdd = new Address();
+            deliveryItems = new LinkedList<>();
         }
     }
 
     public void AddItem(Item item) {
         if (item != null) {
             itemFacade.save(item);
+            itemToAdd = new Item();
         }
     }
 
@@ -89,7 +111,7 @@ public class IndexController {
         if (item != null) {
             boolean found = false;
             for (int i = 0; i < deliveryItems.size(); i++) {
-                if (deliveryItems.get(i).getId() == item.getId()) {
+                if (deliveryItems.get(i).getItem().getId() == item.getId()) {
                     deliveryItems.get(i).setAmount(deliveryItems.get(i).getAmount() + 1);
                     found = true;
                 }
@@ -105,7 +127,6 @@ public class IndexController {
     }
 
     //region Getter & Setter
-
 
     public List<DeliveryItem> getDeliveryItems() {
         return deliveryItems;
