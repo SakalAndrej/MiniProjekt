@@ -206,7 +206,8 @@
                                       value="Street"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="street"
+                        <b:message for="street" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the street" id="street"
                                      placeholder="Street"
                                      value="#{indexController.destinationToAdd.street}"/>
                     </b:column>
@@ -215,7 +216,8 @@
                                       value="City"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="city"
+                        <b:message for="city" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the city" id="city"
                                      placeholder="City"
                                      value="#{indexController.destinationToAdd.city}"/>
                     </b:column>
@@ -233,7 +235,8 @@
                                       value="Country"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="country"
+                        <b:message for="country" style="color:red"/>
+                        <b:inputText required="true" requiredMessage="Please fill in the country" id="country"
                                      placeholder="Country"
                                      value="#{indexController.destinationToAdd.country}"/>
                     </b:column>
