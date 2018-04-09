@@ -27,6 +27,8 @@ public class Init {
 
     @PostConstruct
     public void init() {
+
+        // Sample Data
         for (int i = 0; i < 10; i++) {
             Item item = new Item("ItemName {" + i + "}", "ItemDescr", (14 * i));
             itemFacade.save(item);
