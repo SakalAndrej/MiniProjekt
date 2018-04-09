@@ -1,5 +1,4 @@
-# Mini Projekt - NVS
-Im Rahmen des NVS Unterrichtest, besteht die Aufgabe darin ein Mini-Projekt zu einem Thema zu programmieren.
+# Fast - Delivery
 
 ## Info
 Es wird eine MySQL - Datenbank verwendet:
@@ -12,7 +11,7 @@ Die Website ist unter localhost:8080/mini/ zu erreichen!
 
 ## Aufgabe
 
-Lieferdienst - Unternehmen! Es sollen Kunden, Waren- & Aufträge verwaltet werden können. 
+Es sollen Kunden, Waren- & Aufträge verwaltet werden können. 
 
 Die Website ist in 3 Komponenten eingeteilt:
  - Warenverwaltung mit sortieren und globaler suche
@@ -22,10 +21,6 @@ Die Website ist in 3 Komponenten eingeteilt:
 Alle 3 Komponenten können über ein Panel auf und zugeklappt werden
 
  ![](overview.png)
-
-## ERD
-
- ![](erd.png)
 
 ## Warenverwaltung:
 
