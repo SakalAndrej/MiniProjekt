@@ -16,14 +16,14 @@
 
         <!-- Items hinzufügen -->
         <b:panel title="Manage Items" collapsible="true" look="primary" style="width: 100%">
-            <h:form>
+            <h:form prependId="false">
                 <b:row>
                     <b:column medium-screen="4">
                         <h:outputText style="line-height: 2.5; font-weight: bold"
                                       value="Name:"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="firstName"
+                        <b:inputText required="true" id="name"
                                      placeholder="Name"
                                      value="#{indexController.itemToAdd.name}"/>
                     </b:column>
@@ -32,7 +32,7 @@
                                       value="Description"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="lastName"
+                        <b:inputText required="true" id="description"
                                      placeholder="Description"
                                      value="#{indexController.itemToAdd.description}"/>
                     </b:column>
@@ -42,7 +42,7 @@
                                       value="Weight"/>
                     </b:column>
                     <b:column medium-screen="8">
-                        <b:inputText required="true" id="street"
+                        <b:inputText required="true" id="weight"
                                      placeholder="10.0"
                                      value="#{indexController.itemToAdd.weight}" tooltip="Please fill in KG"/>
                     </b:column>
@@ -50,6 +50,7 @@
                         <b:commandButton style="width: 100%"
                                          update="all"
                                          look="primary"
+                                         id="addItem"
                                          action="#{indexController.addItem}">
                             <b:iconAwesome size="2x" name="fa-plus-square-o"/>
                         </b:commandButton>
@@ -152,7 +153,88 @@
                     </b:dataTable>
                 </h:form>
             </b:panel>
+        </b:panel>
 
+        <!--<b:panel title="Manage Delivery" collapsible="true" look="primary" style="width: 100%">
+            <h:form>
+                <b:row>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="FirstName:"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="firstName"
+                                     placeholder="FirstName"
+                                     value="#{indexController.customerToAdd.firstName}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="LastName"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="lastName"
+                                     placeholder="LastName"
+                                     value="#{indexController.customerToAdd.lastName}"/>
+                    </b:column>
+
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Street"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="street"
+                                     placeholder="Street"
+                                     value="#{indexController.addressToAdd.street}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="City"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="city"
+                                     placeholder="City"
+                                     value="#{indexController.addressToAdd.city}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Address Additional"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="additionalAddress"
+                                     placeholder="Additional Adress"
+                                     value="#{indexController.addressToAdd.additionalAdress}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Country"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="country"
+                                     placeholder="Country"
+                                     value="#{indexController.addressToAdd.country}"/>
+                    </b:column>
+
+                    <b:column>
+                        <b:commandButton style="width: 100%"
+                                         update="all"
+                                         look="primary"
+                                         action="#{indexController.addCustomer}">
+                            <b:iconAwesome size="2x" name="fa-plus-square-o"/>
+                        </b:commandButton>
+                    </b:column>
+                </b:row>
+            </h:form>-->
+
+            <!-- Customer Datatable -->
+            <b:panel title="Customers" collapsible="true">
+                <h:form>
+                    <b:dataTable id="customerdata" value="#{indexController.customers}"
+                                 var="customer">
+                        <b:dataTableColumn value="#{customer.firstName}"/>
+                        <b:dataTableColumn value="#{customer.lastName}"/>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
         </b:panel>
 
     </b:container>
