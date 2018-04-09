@@ -2,6 +2,10 @@ package model;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "ITEM.GET", query = "SELECT i FROM Item i")
+})
+
 @Entity
 @Table(name = "ITEM")
 public class Item {

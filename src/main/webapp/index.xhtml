@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Deliver - Deliver</title>
@@ -14,10 +14,65 @@
     <b:container id="all" fluid="true" style="width:100%">
         <h2>Fast Delivery - Dashboard</h2>
 
+        <!-- Items hinzufügen -->
+        <b:panel title="Manage Items" collapsible="true" look="primary" style="width: 100%">
+            <h:form>
+                <b:row>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Name:"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="firstName"
+                                     placeholder="Name"
+                                     value="#{indexController.itemToAdd.name}"/>
+                    </b:column>
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Description"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="lastName"
+                                     placeholder="Description"
+                                     value="#{indexController.itemToAdd.description}"/>
+                    </b:column>
 
+                    <b:column medium-screen="4">
+                        <h:outputText style="line-height: 2.5; font-weight: bold"
+                                      value="Weight"/>
+                    </b:column>
+                    <b:column medium-screen="8">
+                        <b:inputText required="true" id="street"
+                                     placeholder="10.0"
+                                     value="#{indexController.itemToAdd.weight}" tooltip="Please fill in KG"/>
+                    </b:column>
+                    <b:column>
+                        <b:commandButton style="width: 100%"
+                                         update="all"
+                                         look="primary"
+                                         action="#{indexController.addItem}">
+                            <b:iconAwesome size="2x" name="fa-plus-square-o"/>
+                        </b:commandButton>
+                    </b:column>
+                </b:row>
+            </h:form>
+            <br></br>
+
+            <!-- Items Datatable -->
+            <b:panel title="Items" collapsible="true">
+                <h:form>
+                    <b:dataTable id="itemsdata" value="#{indexController.items}"
+                                 var="item">
+                        <b:dataTableColumn value="#{item.name}"/>
+                        <b:dataTableColumn value="#{item.description}"/>
+                        <b:dataTableColumn value="#{item.weight}"/>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+        </b:panel>
 
         <!-- Customer adden -->
-        <b:panel title="Customer adden" collapsible="true" look="primary" style="width: 100%">
+        <b:panel title="Manage Customer" collapsible="true" look="primary" style="width: 100%">
             <h:form>
                 <b:row>
                     <b:column medium-screen="4">
@@ -38,7 +93,6 @@
                                      placeholder="LastName"
                                      value="#{indexController.customerToAdd.lastName}"/>
                     </b:column>
-
 
                     <b:column medium-screen="4">
                         <h:outputText style="line-height: 2.5; font-weight: bold"
@@ -87,7 +141,20 @@
                     </b:column>
                 </b:row>
             </h:form>
+
+            <!-- Customer Datatable -->
+            <b:panel title="Customers" collapsible="true">
+                <h:form>
+                    <b:dataTable id="customerdata" value="#{indexController.customers}"
+                                 var="customer">
+                        <b:dataTableColumn value="#{customer.firstName}"/>
+                        <b:dataTableColumn value="#{customer.lastName}"/>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+
         </b:panel>
+
     </b:container>
 </h:body>
 </html>
