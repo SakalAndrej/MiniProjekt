@@ -48,8 +48,6 @@ public class IndexController {
 
     private Address destinationToAdd;
 
-    private static FacesContext context = FacesContext.getCurrentInstance();
-
     @PostConstruct
     public void init() {
         destinationToAdd = new Address();
@@ -64,6 +62,7 @@ public class IndexController {
 
     public void addItem() {
         if (itemToAdd != null) {
+            FacesContext context = FacesContext.getCurrentInstance();
             itemFacade.save(itemToAdd);
             items = itemFacade.load();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Succesfully added Item: " + itemToAdd.getName()));
@@ -73,6 +72,7 @@ public class IndexController {
 
     public void addCustomer() {
         if (customerToAdd != null && addressToAdd != null) {
+            FacesContext context = FacesContext.getCurrentInstance();
             this.addressFacade.save(addressToAdd);
             this.customerFacade.save(customerToAdd);
             this.customers = customerFacade.load();
@@ -84,6 +84,7 @@ public class IndexController {
 
     public void saveActDelivery() {
         if (deliveryToAdd != null && destinationToAdd != null && deliveryItems!= null && deliveryItems.size()>0 && deliveryToAdd.getCustomer()!= null) {
+            FacesContext context = FacesContext.getCurrentInstance();
             addressFacade.save(destinationToAdd);
             deliveryToAdd.setDestination(destinationToAdd);
             for (int i = 0; i < deliveryItems.size(); i++) {
@@ -96,13 +97,19 @@ public class IndexController {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Succesfully added Delivery"));
         }
         else {
-            // Growl
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Error while adding Delivery"));
         }
     }
 
     public void selectCustomer(Customer customer) {
+        FacesContext context = FacesContext.getCurrentInstance();
         if (customer != null) {
             deliveryToAdd.setCustomer(customer);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Selected Customer"));
+        }
+        else {
+
         }
     }
 
