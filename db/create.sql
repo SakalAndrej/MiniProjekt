@@ -1,1 +1,1 @@
-CREATE DATABASE minidb;
+CREATE DATABASE mysqldb;
